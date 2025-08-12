@@ -1,0 +1,27 @@
+# This file defines the frontend 'Component', which is a user-facing website.
+
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  # The unique identifier for this frontend component.
+  name: aldente-frontend
+  description: The user-facing web application for Aldente.
+  # Annotations provide extra metadata. This one links the component to its GitHub repo.
+  annotations:
+    github.com/project-slug: andenteic/frontend
+spec:
+  # 'type' is crucial. 'website' is used for user-facing applications.
+  type: website
+  # 'lifecycle' indicates the current maturity of the component (e.g., experimental, production).
+  lifecycle: production
+  # Assigns ownership to the team.
+  owner: group:default/andenteic-team
+  # Links this component as a part of the 'aldente-app' system.
+  system: aldente-app
+  # 'dependsOn' creates a visual link in the system diagram to other components.
+  # This line shows that the frontend depends on the backend.
+  dependsOn:
+    - component:default/aldente-backend
+  # 'consumesApis' explicitly lists the APIs this component uses. This also creates a link.
+  consumesApis:
+    - aldente-backend-api
